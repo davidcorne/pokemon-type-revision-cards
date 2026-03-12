@@ -31,7 +31,11 @@ export const generateQuestion = (): Question => {
 
   while (attempts < maxAttempts) {
     const question = generateQuestionInternal();
-    if (question.correctAnswers.length > 0) {
+    // ensure there are 1-6 correct answers
+    if (
+      question.correctAnswers.length > 0 &&
+      question.correctAnswers.length <= 6
+    ) {
       return question;
     }
     attempts++;
@@ -81,6 +85,11 @@ const generateQuestionInternal = (): Question => {
     correctAnswers = getResistances(defendingTypes);
   } else {
     correctAnswers = getImmunities(defendingTypes);
+  }
+
+  // In rare cases the list might exceed our option limit; truncate to six
+  if (correctAnswers.length > 6) {
+    correctAnswers = correctAnswers.slice(0, 6);
   }
 
   // Generate question ID
