@@ -108,7 +108,7 @@ const generateQuestionInternal = (): Question => {
  */
 export const generateOptions = (
   correctAnswers: PokemonType[],
-  count: number = 6
+  count: number = 8
 ): PokemonType[] => {
   const allTypes = getAllTypes();
 

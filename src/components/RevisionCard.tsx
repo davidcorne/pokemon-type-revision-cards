@@ -22,7 +22,7 @@ export const RevisionCard: React.FC<RevisionCardProps> = ({
 
   useEffect(() => {
     // Generate options when question changes
-    const generatedOptions = generateOptions(question.correctAnswers, 6);
+    const generatedOptions = generateOptions(question.correctAnswers, 8);
     setOptions(generatedOptions);
     setSelectedTypes([]);
     setIsAnswered(false);
@@ -109,7 +109,7 @@ export const RevisionCard: React.FC<RevisionCardProps> = ({
             ? `Selected: ${selectedTypes.length} / ${question.correctAnswers.length}`
             : `Select ${question.correctAnswers.length} type${question.correctAnswers.length !== 1 ? 's' : ''}`}
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {options.map((type) => (
             <TypeButton
               key={type}

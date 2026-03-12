@@ -159,4 +159,36 @@ describe('Quiz Logic', () => {
       expect(score).toBe(33); // 1/3 = 0.333... rounds to 33
     });
   });
+
+  describe('generateQuestion - constraints', () => {
+    it('should always generate 1-6 correct answers', () => {
+      for (let i = 0; i < 20; i++) {
+        const question = generateQuestion();
+        expect(question.correctAnswers.length).toBeGreaterThanOrEqual(1);
+        expect(question.correctAnswers.length).toBeLessThanOrEqual(6);
+      }
+    });
+
+    it('should generate valid questions after retries', () => {
+      // This already passes implicitly, but it's good to document
+      const question = generateQuestion();
+      expect(question).toBeDefined();
+      expect(question.id).toBeTruthy();
+    });
+  });
+
+  describe('generateOptions - defaults', () => {
+    it('should use 8 options by default', () => {
+      const correctAnswers: PokemonType[] = ['Water'];
+      const options = generateOptions(correctAnswers);
+      expect(options.length).toBe(8);
+    });
+
+    it('should pad with distractors up to default count', () => {
+      const correctAnswers: PokemonType[] = ['Water'];
+      const options = generateOptions(correctAnswers);
+      const hasDistractors = options.some(opt => !correctAnswers.includes(opt));
+      expect(hasDistractors).toBe(true);
+    });
+  });
 });

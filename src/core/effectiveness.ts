@@ -1,5 +1,5 @@
 import type { PokemonType } from './typeChart';
-import { getTypeData } from './typeChart';
+import { getTypeData, getAllTypes } from './typeChart';
 
 export type Effectiveness = 0 | 0.25 | 0.5 | 1 | 2 | 4;
 
@@ -41,26 +41,7 @@ export const getEffectiveness = (
 export const getWeaknesses = (
   defendingTypes: [PokemonType] | [PokemonType, PokemonType]
 ): PokemonType[] => {
-  const allTypes: PokemonType[] = [
-    'Normal',
-    'Fire',
-    'Water',
-    'Electric',
-    'Grass',
-    'Ice',
-    'Fighting',
-    'Poison',
-    'Ground',
-    'Flying',
-    'Psychic',
-    'Bug',
-    'Rock',
-    'Ghost',
-    'Dragon',
-    'Dark',
-    'Steel',
-    'Fairy',
-  ];
+  const allTypes = getAllTypes();
 
   return allTypes.filter((attackType) => {
     const effectiveness = getEffectiveness(attackType, defendingTypes);
@@ -74,26 +55,7 @@ export const getWeaknesses = (
 export const getResistances = (
   defendingTypes: [PokemonType] | [PokemonType, PokemonType]
 ): PokemonType[] => {
-  const allTypes: PokemonType[] = [
-    'Normal',
-    'Fire',
-    'Water',
-    'Electric',
-    'Grass',
-    'Ice',
-    'Fighting',
-    'Poison',
-    'Ground',
-    'Flying',
-    'Psychic',
-    'Bug',
-    'Rock',
-    'Ghost',
-    'Dragon',
-    'Dark',
-    'Steel',
-    'Fairy',
-  ];
+  const allTypes = getAllTypes();
 
   return allTypes.filter((attackType) => {
     const effectiveness = getEffectiveness(attackType, defendingTypes);
@@ -107,26 +69,7 @@ export const getResistances = (
 export const getImmunities = (
   defendingTypes: [PokemonType] | [PokemonType, PokemonType]
 ): PokemonType[] => {
-  const allTypes: PokemonType[] = [
-    'Normal',
-    'Fire',
-    'Water',
-    'Electric',
-    'Grass',
-    'Ice',
-    'Fighting',
-    'Poison',
-    'Ground',
-    'Flying',
-    'Psychic',
-    'Bug',
-    'Rock',
-    'Ghost',
-    'Dragon',
-    'Dark',
-    'Steel',
-    'Fairy',
-  ];
+  const allTypes = getAllTypes();
 
   return allTypes.filter((attackType) => {
     const effectiveness = getEffectiveness(attackType, defendingTypes);

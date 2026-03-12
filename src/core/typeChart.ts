@@ -132,8 +132,21 @@ const typeChartData: TypeChart = {
   },
 };
 
+/**
+ * A cached array of every Pokémon type in the chart.
+ *
+ * Having a standalone constant makes it easy to consume the list
+ * without repeatedly calling Object.keys and also avoids duplication
+ * across modules.
+ */
+export const allTypes: PokemonType[] = Object.keys(
+  typeChartData
+) as PokemonType[];
+
 export const getAllTypes = (): PokemonType[] => {
-  return Object.keys(typeChartData) as PokemonType[];
+  // return a shallow copy to prevent callers from mutating the internal
+  // array, although the risk is low since the values are primitive strings.
+  return [...allTypes];
 };
 
 export const getTypeData = (type: PokemonType): TypeData => {
