@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import type { Question } from '../core/quiz';
 import { generateOptions, checkAnswer } from '../core/quiz';
 import type { PokemonType } from '../core/typeChart';
-import { getTypeStyle, getTypeIcon } from '../data/typeMetadata';
+import { getTypeStyle } from '../data/typeMetadata';
 import { TypeButton } from './TypeButton';
+import { SquareButton } from './SquareButton';
 
 interface RevisionCardProps {
   question: Question;
@@ -26,6 +27,11 @@ export const RevisionCard: React.FC<RevisionCardProps> = ({
     setSelectedTypes([]);
     setIsAnswered(false);
   }, [question]);
+
+  const handleSkip = () => {
+    setIsAnswered(true);
+    onAnswerSubmit(false);
+  };
 
   const handleTypeSelect = (type: PokemonType) => {
     if (isAnswered) return;
@@ -74,10 +80,14 @@ export const RevisionCard: React.FC<RevisionCardProps> = ({
 
         {/* Defending Type Display */}
         <div
-          className="inline-flex items-center gap-3 px-6 py-4 rounded-lg mb-4"
+          className="inline-flex items-center gap-4 px-6 py-4 rounded-lg mb-4"
           style={{ backgroundColor: defendingStyle.bgColor }}
         >
-          <span className="text-4xl">{getTypeIcon(question.defendingTypes[0])}</span>
+          <img
+            src={`/types/${question.defendingTypes[0].toLowerCase()}.svg`}
+            alt={question.defendingTypes[0]}
+            className="w-16 h-16 object-contain"
+          />
           <div>
             <div
               className="text-2xl font-bold"
@@ -93,15 +103,13 @@ export const RevisionCard: React.FC<RevisionCardProps> = ({
       </div>
 
       {/* Options Grid */}
-      <div className="mb-6">
-        <p className="text-sm font-semibold text-gray-600 mb-3">
+      <div className="mb-8">
+        <p className="text-sm font-semibold text-gray-600 mb-4">
           {selectedTypes.length > 0
             ? `Selected: ${selectedTypes.length} / ${question.correctAnswers.length}`
-            : `Select ${question.correctAnswers.length} type${
-                question.correctAnswers.length !== 1 ? 's' : ''
-              }`}
+            : `Select ${question.correctAnswers.length} type${question.correctAnswers.length !== 1 ? 's' : ''}`}
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
           {options.map((type) => (
             <TypeButton
               key={type}
@@ -134,21 +142,36 @@ export const RevisionCard: React.FC<RevisionCardProps> = ({
         </div>
       )}
 
-      {/* Submit Button */}
+      {/* Buttons Section */}
       {!isAnswered && (
-        <button
-          onClick={handleSubmit}
-          disabled={selectedTypes.length !== question.correctAnswers.length}
-          className={`w-full py-3 rounded-lg font-semibold transition-all
-            ${
+        <div className="flex gap-4 mt-8 pt-6 border-t border-gray-200 justify-center">
+          <SquareButton
+            onClick={handleSubmit}
+            disabled={selectedTypes.length !== question.correctAnswers.length}
+            className={`${
               selectedTypes.length === question.correctAnswers.length
-                ? 'bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                ? 'bg-green-500 hover:bg-green-600 text-white cursor-pointer'
+                : 'bg-gray-300 text-gray-400 cursor-not-allowed opacity-60'
             }
           `}
-        >
-          Submit Answer
-        </button>
+            title="Submit answer"
+          >
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+              <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-sm font-bold whitespace-nowrap">Submit</span>
+          </SquareButton>
+          <SquareButton
+            onClick={handleSkip}
+            className="bg-gray-400 hover:bg-gray-500 text-white"
+            title="Skip question"
+          >
+            <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+              <path d="M5 4v16M19 12l-8-6v12l8-6Z"/>
+            </svg>
+            <span className="text-sm font-bold whitespace-nowrap">Skip</span>
+          </SquareButton>
+        </div>
       )}
     </div>
   );

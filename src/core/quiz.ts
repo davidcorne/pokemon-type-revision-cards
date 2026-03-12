@@ -23,16 +23,38 @@ export interface QuizState {
 }
 
 /**
- * Generate a random question
+ * Generate a random question (retries until valid)
  */
 export const generateQuestion = (): Question => {
+  let attempts = 0;
+  const maxAttempts = 50;
+
+  while (attempts < maxAttempts) {
+    const question = generateQuestionInternal();
+    if (question.correctAnswers.length > 0) {
+      return question;
+    }
+    attempts++;
+  }
+
+  // Fallback: default to a valid question
+  return generateQuestionInternal();
+};
+
+/**
+ * Internal question generator
+ */
+const generateQuestionInternal = (): Question => {
   const allTypes = getAllTypes();
   
-  // Randomly decide if it's a single or dual type
-  const isDualType = Math.random() > 0.5;
+  // 60% chance of single type, 40% chance of dual type
+  const isSingleType = Math.random() < 0.6;
   
   let defendingTypes: [PokemonType] | [PokemonType, PokemonType];
-  if (isDualType) {
+  if (isSingleType) {
+    const type = allTypes[Math.floor(Math.random() * allTypes.length)];
+    defendingTypes = [type];
+  } else {
     const type1 = allTypes[Math.floor(Math.random() * allTypes.length)];
     let type2 = allTypes[Math.floor(Math.random() * allTypes.length)];
     // Ensure type2 is different from type1
@@ -40,9 +62,6 @@ export const generateQuestion = (): Question => {
       type2 = allTypes[Math.floor(Math.random() * allTypes.length)];
     }
     defendingTypes = [type1, type2];
-  } else {
-    const type = allTypes[Math.floor(Math.random() * allTypes.length)];
-    defendingTypes = [type];
   }
 
   // Randomly select a category
