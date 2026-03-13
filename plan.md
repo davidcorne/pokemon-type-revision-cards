@@ -35,7 +35,7 @@ flowchart TB
 - **Build**: Vite + TypeScript
 - **UI**: React + Tailwind CSS
 - **Testing**: Vitest (unit tests for core)
-- **PWA**: vite-plugin-pwa (manifest + service worker)
+- **PWA**: Manual manifest + lightweight service worker (no third-party PWA plugin)
 
 ## 1. Project Setup
 
@@ -112,7 +112,7 @@ flowchart TB
 - **Manifest**: `name`, `short_name`, `theme_color`, `background_color`, `display: "standalone"`
 - **Icons**: 192x192, 512x512 (generate from a simple type-chart icon)
 - **Service worker**: Cache static assets and JSON; offline fallback
-- Use `vite-plugin-pwa` with `registerType: 'autoUpdate'`
+- Implement a small custom service worker (no external PWA plugin) so dependencies stay minimal and security surface area is reduced.
 
 ## 6. File Structure
 

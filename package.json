@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node generate-sw.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -27,7 +28,6 @@
     "@vitest/ui": "^4.1.0",
     "autoprefixer": "^10.4.27",
     "eslint": "^9.39.4",
-    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
@@ -37,7 +37,6 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^8.0.0",
-    "vite-plugin-pwa": "^1.2.0",
     "vitest": "^4.1.0"
   }
 }
