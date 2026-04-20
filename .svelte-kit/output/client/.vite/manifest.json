@@ -1,0 +1,93 @@
+{
+  ".svelte-kit/generated/client-optimized/app.js": {
+    "file": "_app/immutable/entry/app.Ck4CGEAJ.js",
+    "name": "entry/app",
+    "src": ".svelte-kit/generated/client-optimized/app.js",
+    "isEntry": true,
+    "imports": [
+      "_BbnFxrpz.js",
+      "_Dj6f-nJM.js",
+      "_DEDqjojZ.js"
+    ],
+    "dynamicImports": [
+      ".svelte-kit/generated/client-optimized/nodes/0.js",
+      ".svelte-kit/generated/client-optimized/nodes/1.js",
+      ".svelte-kit/generated/client-optimized/nodes/2.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/0.js": {
+    "file": "_app/immutable/nodes/0.CxiTnQRY.js",
+    "name": "nodes/0",
+    "src": ".svelte-kit/generated/client-optimized/nodes/0.js",
+    "isEntry": true,
+    "imports": [
+      "_BbnFxrpz.js",
+      "_DEDqjojZ.js",
+      "_QLn7M37f.js"
+    ],
+    "css": [
+      "_app/immutable/assets/0.Bx7a1x_Z.css"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/1.js": {
+    "file": "_app/immutable/nodes/1.DR5dOS37.js",
+    "name": "nodes/1",
+    "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
+    "isEntry": true,
+    "imports": [
+      "_BbnFxrpz.js",
+      "_x1R5vuqN.js",
+      "_DEDqjojZ.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/2.js": {
+    "file": "_app/immutable/nodes/2.DNnyM-DR.js",
+    "name": "nodes/2",
+    "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
+    "isEntry": true,
+    "imports": [
+      "_BbnFxrpz.js",
+      "_DEDqjojZ.js",
+      "_QLn7M37f.js"
+    ],
+    "css": [
+      "_app/immutable/assets/2.BovQyv44.css"
+    ]
+  },
+  "_BbnFxrpz.js": {
+    "file": "_app/immutable/chunks/BbnFxrpz.js",
+    "name": "index-client"
+  },
+  "_DEDqjojZ.js": {
+    "file": "_app/immutable/chunks/DEDqjojZ.js",
+    "name": "disclose-version"
+  },
+  "_Dj6f-nJM.js": {
+    "file": "_app/immutable/chunks/Dj6f-nJM.js",
+    "name": "preload-helper"
+  },
+  "_QLn7M37f.js": {
+    "file": "_app/immutable/chunks/QLn7M37f.js",
+    "name": "legacy",
+    "imports": [
+      "_BbnFxrpz.js"
+    ]
+  },
+  "_x1R5vuqN.js": {
+    "file": "_app/immutable/chunks/x1R5vuqN.js",
+    "name": "client",
+    "imports": [
+      "_BbnFxrpz.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
+    "file": "_app/immutable/entry/start.BWy6RUJK.js",
+    "name": "entry/start",
+    "src": "node_modules/@sveltejs/kit/src/runtime/client/entry.js",
+    "isEntry": true,
+    "imports": [
+      "_BbnFxrpz.js",
+      "_x1R5vuqN.js"
+    ]
+  }
+}
