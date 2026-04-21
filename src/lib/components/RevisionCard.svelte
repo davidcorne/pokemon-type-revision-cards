@@ -44,10 +44,11 @@
   $: defendingIcon = getTypeIcon(question.defendingTypes[0]);
   
   $: categoryText = (() => {
+    const pkmnName = question.pokemonName;
     switch (question.category) {
-      case 'weaknesses': return `Select types that are super effective against ${defendingTypeDisplay}:`;
-      case 'resistances': return `Select types that are not very effective against ${defendingTypeDisplay}:`;
-      case 'immunities': return `Select types that deal 0 damage to ${defendingTypeDisplay}:`;
+      case 'weaknesses': return `Select types that are super effective against ${pkmnName} (${defendingTypeDisplay}):`;
+      case 'resistances': return `Select types that are not very effective against ${pkmnName} (${defendingTypeDisplay}):`;
+      case 'immunities': return `Select types that deal 0 damage to ${pkmnName} (${defendingTypeDisplay}):`;
     }
   })();
 </script>
@@ -61,8 +62,7 @@
         {@html defendingIcon}
       </div>
       <div class="defending-info">
-        <span class="defending-name" style="color: {defendingStyle.textColor}">{defendingTypeDisplay}</span>
-        <span class="defending-label">Type{question.defendingTypes.length > 1 ? 's' : ''}</span>
+        <span class="defending-name" style="color: {defendingStyle.textColor}">{question.pokemonName}</span>
       </div>
     </div>
   </div>
@@ -94,7 +94,7 @@
       <p class="feedback-title">{isCorrect ? '✓ Correct!' : '✗ Incorrect'}</p>
       <p class="feedback-text">
         {isCorrect 
-          ? `Great job! You correctly identified all the ${question.category} against ${defendingTypeDisplay}.`
+          ? `Great job! You correctly identified all the ${question.category} against ${question.pokemonName}.`
           : `The correct answer is: ${question.correctAnswers.join(', ')}`}
       </p>
     </div>

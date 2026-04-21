@@ -156,21 +156,29 @@ export interface Question {
   defendingTypes: [PokemonType] | [PokemonType, PokemonType];
   category: QuestionCategory;
   correctAnswers: PokemonType[];
+  pokemonName: string;
 }
 
+interface PokemonData {
+  name: string;
+  types: string[];
+}
+
+import pokemonData from '../data/pokemon.json';
+
+const getRandomPokemon = (): PokemonData => {
+  const pokemon = pokemonData.pokemon as PokemonData[];
+  return pokemon[Math.floor(Math.random() * pokemon.length)];
+};
+
 const generateQuestionInternal = (): Question => {
-  const types = getAllTypes();
-  const isSingleType = Math.random() < 0.6;
+  const pokemon = getRandomPokemon();
   let defendingTypes: [PokemonType] | [PokemonType, PokemonType];
   
-  if (isSingleType) {
-    const type = types[Math.floor(Math.random() * types.length)];
-    defendingTypes = [type];
+  if (pokemon.types.length === 1) {
+    defendingTypes = [pokemon.types[0] as PokemonType];
   } else {
-    const type1 = types[Math.floor(Math.random() * types.length)];
-    let type2 = types[Math.floor(Math.random() * types.length)];
-    while (type2 === type1) type2 = types[Math.floor(Math.random() * types.length)];
-    defendingTypes = [type1, type2];
+    defendingTypes = [pokemon.types[0] as PokemonType, pokemon.types[1] as PokemonType];
   }
 
   const categories: QuestionCategory[] = ['weaknesses', 'resistances', 'immunities'];
@@ -183,7 +191,13 @@ const generateQuestionInternal = (): Question => {
 
   if (correctAnswers.length > 6) correctAnswers = correctAnswers.slice(0, 6);
 
-  return { id: `q_${Date.now()}_${Math.random()}`, defendingTypes, category, correctAnswers };
+  return { 
+    id: `q_${Date.now()}_${Math.random()}`, 
+    defendingTypes, 
+    category, 
+    correctAnswers,
+    pokemonName: pokemon.name
+  };
 };
 
 export const generateQuestion = (): Question => {
