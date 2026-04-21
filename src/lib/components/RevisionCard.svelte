@@ -81,6 +81,8 @@
         <TypeButton 
           {type}
           isSelected={selectedTypes.includes(type)}
+          isAnswered={isAnswered}
+          isCorrectAnswer={question.correctAnswers.includes(type)}
           onClick={() => handleTypeSelect(type)}
         />
       {/each}

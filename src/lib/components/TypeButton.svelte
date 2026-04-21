@@ -4,6 +4,8 @@
 
   export let type: PokemonType;
   export let isSelected: boolean = false;
+  export let isAnswered: boolean = false;
+  export let isCorrectAnswer: boolean = false;
   export let onClick: () => void = () => {};
 
   const style = getTypeStyle(type);
@@ -13,7 +15,10 @@
 <button
   class="type-btn"
   class:selected={isSelected}
+  class:correct={isAnswered && isCorrectAnswer}
+  class:incorrect={isAnswered && isSelected && !isCorrectAnswer}
   onclick={onClick}
+  disabled={isAnswered}
   style="--type-color: {style.color}; --type-bg: {style.bgColor}; --type-text: {style.textColor}"
 >
   {@html icon}
@@ -38,12 +43,16 @@
     box-shadow: var(--shadow-sm);
   }
 
+  .type-btn:disabled {
+    cursor: default;
+  }
+
   .type-btn :global(svg) {
     width: 2.5rem;
     height: 2.5rem;
   }
 
-  .type-btn:hover {
+  .type-btn:hover:not(:disabled) {
     transform: scale(1.08);
     box-shadow: var(--shadow);
   }
@@ -52,6 +61,15 @@
     transform: scale(1.1);
     box-shadow: var(--shadow-lg);
     border-color: var(--text-h);
+  }
+
+  .type-btn.correct {
+    box-shadow: 0 0 0 3px var(--success), var(--shadow-lg);
+  }
+
+  .type-btn.incorrect {
+    box-shadow: 0 0 0 3px var(--danger), var(--shadow-lg);
+    opacity: 0.7;
   }
 
   .type-label {
