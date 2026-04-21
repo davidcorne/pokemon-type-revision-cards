@@ -36,25 +36,25 @@
     onAnswerSubmit(false);
   };
 
-  const getCategoryText = (): string => {
-    switch (question.category) {
-      case 'weaknesses': return 'Select types that are super effective against:';
-      case 'resistances': return 'Select types that are not very effective against:';
-      case 'immunities': return 'Select types that deal 0 damage to:';
-    }
-  };
-
   $: defendingTypeDisplay = question.defendingTypes.length === 1
     ? question.defendingTypes[0]
     : `${question.defendingTypes[0]}/${question.defendingTypes[1]}`;
     
   $: defendingStyle = getTypeStyle(question.defendingTypes[0]);
   $: defendingIcon = getTypeIcon(question.defendingTypes[0]);
+  
+  $: categoryText = (() => {
+    switch (question.category) {
+      case 'weaknesses': return `Select types that are super effective against ${defendingTypeDisplay}:`;
+      case 'resistances': return `Select types that are not very effective against ${defendingTypeDisplay}:`;
+      case 'immunities': return `Select types that deal 0 damage to ${defendingTypeDisplay}:`;
+    }
+  })();
 </script>
 
 <div class="revision-card animate-scale-in">
   <div class="question-header">
-    <h2 class="question-prompt">{getCategoryText()}</h2>
+    <h2 class="question-prompt">{categoryText}</h2>
     
     <div class="defending-type" style="--def-bg: {defendingStyle.bgColor}">
       <div class="defending-icon">
