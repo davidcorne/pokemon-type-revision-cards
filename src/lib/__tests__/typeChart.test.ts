@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getAllTypes, getTypeData } from '../core/types';
+import { getAllTypes, getTypeStyle } from '../core/types';
 
 describe('typeChart', () => {
   describe('getAllTypes', () => {
@@ -33,9 +33,20 @@ describe('typeChart', () => {
     });
   });
 
-  describe('getTypeData', () => {
-    it('should throw for invalid type', () => {
-      expect(() => getTypeData('Invalid' as any)).toThrow('Unknown type');
+  describe('getTypeStyle', () => {
+    it('should return style for valid type', () => {
+      const style = getTypeStyle('Fire');
+      expect(style.color).toBe('#F08030');
+      expect(style.bgColor).toBe('#FFCCCC');
+    });
+
+    it('should return icons for all types', () => {
+      const types = getAllTypes();
+      types.forEach(type => {
+        const style = getTypeStyle(type);
+        expect(style.color).toBeDefined();
+        expect(style.bgColor).toBeDefined();
+      });
     });
   });
 });

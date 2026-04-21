@@ -26,6 +26,13 @@ describe('Quiz Logic', () => {
       const q2 = generateQuestion();
       expect(q1.id).not.toBe(q2.id);
     });
+
+    it('should have a pokemon name', () => {
+      const question = generateQuestion();
+      expect(question.pokemonName).toBeDefined();
+      expect(typeof question.pokemonName).toBe('string');
+      expect(question.pokemonName.length).toBeGreaterThan(0);
+    });
   });
 
   describe('generateOptions', () => {
@@ -63,6 +70,7 @@ describe('Quiz Logic', () => {
         defendingTypes: ['Fire'] as const,
         category: 'weaknesses' as const,
         correctAnswers: ['Water', 'Ground', 'Rock'],
+        pokemonName: 'Charmander',
       };
       const selectedTypes = ['Water', 'Ground', 'Rock'];
       expect(checkAnswer(question, selectedTypes)).toBe(true);
@@ -74,6 +82,7 @@ describe('Quiz Logic', () => {
         defendingTypes: ['Fire'] as const,
         category: 'weaknesses' as const,
         correctAnswers: ['Water', 'Ground', 'Rock'],
+        pokemonName: 'Charmander',
       };
       const selectedTypes = ['Rock', 'Water', 'Ground'];
       expect(checkAnswer(question, selectedTypes)).toBe(true);
@@ -85,6 +94,7 @@ describe('Quiz Logic', () => {
         defendingTypes: ['Fire'] as const,
         category: 'weaknesses' as const,
         correctAnswers: ['Water', 'Ground', 'Rock'],
+        pokemonName: 'Charmander',
       };
       const selectedTypes = ['Water', 'Electric'];
       expect(checkAnswer(question, selectedTypes)).toBe(false);
@@ -96,6 +106,7 @@ describe('Quiz Logic', () => {
         defendingTypes: ['Fire'] as const,
         category: 'weaknesses' as const,
         correctAnswers: ['Water', 'Ground', 'Rock'],
+        pokemonName: 'Charmander',
       };
       const selectedTypes = ['Water', 'Ground'];
       expect(checkAnswer(question, selectedTypes)).toBe(false);
@@ -107,6 +118,7 @@ describe('Quiz Logic', () => {
         defendingTypes: ['Fire'] as const,
         category: 'weaknesses' as const,
         correctAnswers: ['Water', 'Ground', 'Rock'],
+        pokemonName: 'Charmander',
       };
       const selectedTypes = ['Water', 'Ground', 'Electric'];
       expect(checkAnswer(question, selectedTypes)).toBe(false);
