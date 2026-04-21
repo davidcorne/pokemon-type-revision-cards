@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Question, PokemonType } from '$lib/core/types';
-  import { generateOptions, checkAnswer, getTypeStyle } from '$lib/core/types';
+  import { generateOptions, checkAnswer, getTypeStyle, getTypeIcon } from '$lib/core/types';
   import TypeButton from './TypeButton.svelte';
 
   export let question: Question;
@@ -49,6 +49,7 @@
     : `${question.defendingTypes[0]}/${question.defendingTypes[1]}`;
     
   $: defendingStyle = getTypeStyle(question.defendingTypes[0]);
+  $: defendingIcon = getTypeIcon(question.defendingTypes[0]);
 </script>
 
 <div class="revision-card animate-scale-in">
@@ -56,11 +57,9 @@
     <h2 class="question-prompt">{getCategoryText()}</h2>
     
     <div class="defending-type" style="--def-bg: {defendingStyle.bgColor}">
-      <img 
-        src="/types/{question.defendingTypes[0].toLowerCase()}.svg" 
-        alt={question.defendingTypes[0]}
-        class="defending-icon"
-      />
+      <div class="defending-icon">
+        {@html defendingIcon}
+      </div>
       <div class="defending-info">
         <span class="defending-name" style="color: {defendingStyle.textColor}">{defendingTypeDisplay}</span>
         <span class="defending-label">Type{question.defendingTypes.length > 1 ? 's' : ''}</span>
@@ -156,7 +155,11 @@
   .defending-icon {
     width: 4rem;
     height: 4rem;
-    object-fit: contain;
+  }
+
+  .defending-icon :global(svg) {
+    width: 100%;
+    height: 100%;
   }
 
   .defending-info {

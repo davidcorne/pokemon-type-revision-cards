@@ -55,11 +55,48 @@ const typeColors: Record<PokemonType, TypeStyle> = {
 
 export const getTypeStyle = (type: PokemonType): TypeStyle => typeColors[type];
 
-export const getTypeData = (type: PokemonType): TypeData => {
-  const data = typeChartData[type];
-  if (!data) throw new Error(`Unknown type: ${type}`);
-  return data;
+// Import SVG icons as raw strings
+import normalSvg from '../../icons/normal.svg?raw';
+import fireSvg from '../../icons/fire.svg?raw';
+import waterSvg from '../../icons/water.svg?raw';
+import electricSvg from '../../icons/electric.svg?raw';
+import grassSvg from '../../icons/grass.svg?raw';
+import iceSvg from '../../icons/ice.svg?raw';
+import fightingSvg from '../../icons/fighting.svg?raw';
+import poisonSvg from '../../icons/poison.svg?raw';
+import groundSvg from '../../icons/ground.svg?raw';
+import flyingSvg from '../../icons/flying.svg?raw';
+import psychicSvg from '../../icons/psychic.svg?raw';
+import bugSvg from '../../icons/bug.svg?raw';
+import rockSvg from '../../icons/rock.svg?raw';
+import ghostSvg from '../../icons/ghost.svg?raw';
+import dragonSvg from '../../icons/dragon.svg?raw';
+import darkSvg from '../../icons/dark.svg?raw';
+import steelSvg from '../../icons/steel.svg?raw';
+import fairySvg from '../../icons/fairy.svg?raw';
+
+const typeIcons: Record<PokemonType, string> = {
+  Normal: normalSvg,
+  Fire: fireSvg,
+  Water: waterSvg,
+  Electric: electricSvg,
+  Grass: grassSvg,
+  Ice: iceSvg,
+  Fighting: fightingSvg,
+  Poison: poisonSvg,
+  Ground: groundSvg,
+  Flying: flyingSvg,
+  Psychic: psychicSvg,
+  Bug: bugSvg,
+  Rock: rockSvg,
+  Ghost: ghostSvg,
+  Dragon: dragonSvg,
+  Dark: darkSvg,
+  Steel: steelSvg,
+  Fairy: fairySvg,
 };
+
+export const getTypeIcon = (type: PokemonType): string => typeIcons[type];
 
 interface TypeData {
   weak_to: PokemonType[];

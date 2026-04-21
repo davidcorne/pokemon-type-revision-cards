@@ -52,9 +52,6 @@ declare module '$env/static/private' {
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
 	export const INIT_CWD: string;
-	export const LANG: string;
-	export const LC_ALL: string;
-	export const LC_CTYPE: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
 	export const MOZ_PLUGIN_PATH: string;
@@ -92,12 +89,10 @@ declare module '$env/static/private' {
 	export const OPENCODE_PID: string;
 	export const OPENCODE_SERVER_PASSWORD: string;
 	export const OPENCODE_SERVER_USERNAME: string;
-	export const OPENCODE_TERMINAL: string;
 	export const OPEN_AI_API: string;
 	export const OS: string;
 	export const Path: string;
 	export const PATHEXT: string;
-	export const PORT: string;
 	export const PROCESSOR_ARCHITECTURE: string;
 	export const PROCESSOR_IDENTIFIER: string;
 	export const PROCESSOR_LEVEL: string;
@@ -112,7 +107,6 @@ declare module '$env/static/private' {
 	export const SystemDrive: string;
 	export const SystemRoot: string;
 	export const TEMP: string;
-	export const TERM: string;
 	export const TMP: string;
 	export const USERDOMAIN: string;
 	export const USERDOMAIN_ROAMINGPROFILE: string;
@@ -220,9 +214,6 @@ declare module '$env/dynamic/private' {
 		HOMEDRIVE: string;
 		HOMEPATH: string;
 		INIT_CWD: string;
-		LANG: string;
-		LC_ALL: string;
-		LC_CTYPE: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
 		MOZ_PLUGIN_PATH: string;
@@ -260,12 +251,10 @@ declare module '$env/dynamic/private' {
 		OPENCODE_PID: string;
 		OPENCODE_SERVER_PASSWORD: string;
 		OPENCODE_SERVER_USERNAME: string;
-		OPENCODE_TERMINAL: string;
 		OPEN_AI_API: string;
 		OS: string;
 		Path: string;
 		PATHEXT: string;
-		PORT: string;
 		PROCESSOR_ARCHITECTURE: string;
 		PROCESSOR_IDENTIFIER: string;
 		PROCESSOR_LEVEL: string;
@@ -280,7 +269,6 @@ declare module '$env/dynamic/private' {
 		SystemDrive: string;
 		SystemRoot: string;
 		TEMP: string;
-		TERM: string;
 		TMP: string;
 		USERDOMAIN: string;
 		USERDOMAIN_ROAMINGPROFILE: string;

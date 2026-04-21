@@ -38,6 +38,6 @@ declare module "$app/types" {
 		};
 		Pathname(): "/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): string & {};
+		Asset(): "/types/bug.svg" | "/types/dark.svg" | "/types/dragon.svg" | "/types/electric.svg" | "/types/fairy.svg" | "/types/fighting.svg" | "/types/fire.svg" | "/types/flying.svg" | "/types/ghost.svg" | "/types/grass.svg" | "/types/ground.svg" | "/types/ice.svg" | "/types/normal.svg" | "/types/poison.svg" | "/types/psychic.svg" | "/types/rock.svg" | "/types/steel.svg" | "/types/water.svg" | string & {};
 	}
 }

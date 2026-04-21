@@ -1,13 +1,13 @@
 <script lang="ts">
   import type { PokemonType } from '$lib/core/types';
-  import { getTypeStyle } from '$lib/core/types';
+  import { getTypeStyle, getTypeIcon } from '$lib/core/types';
 
   export let type: PokemonType;
   export let isSelected: boolean = false;
   export let onClick: () => void = () => {};
 
   const style = getTypeStyle(type);
-  const svgPath = `/types/${type.toLowerCase()}.svg`;
+  const icon = getTypeIcon(type);
 </script>
 
 <button
@@ -16,7 +16,7 @@
   onclick={onClick}
   style="--type-color: {style.color}; --type-bg: {style.bgColor}; --type-text: {style.textColor}"
 >
-  <img src={svgPath} alt={type} class="type-icon" />
+  {@html icon}
   <span class="type-label">{type}</span>
 </button>
 
@@ -38,6 +38,11 @@
     box-shadow: var(--shadow-sm);
   }
 
+  .type-btn :global(svg) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
   .type-btn:hover {
     transform: scale(1.08);
     box-shadow: var(--shadow);
@@ -47,12 +52,6 @@
     transform: scale(1.1);
     box-shadow: var(--shadow-lg);
     border-color: var(--text-h);
-  }
-
-  .type-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    object-fit: contain;
   }
 
   .type-label {
